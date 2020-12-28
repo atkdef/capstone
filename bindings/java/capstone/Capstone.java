@@ -36,6 +36,7 @@ public class Capstone {
     public Systemz.UnionOpInfo sysz;
     public Xcore.UnionOpInfo xcore;
     public M680x.UnionOpInfo m680x;
+    public Riscv.UnionOpInfo riscv;
   }
 
   protected static class _cs_insn extends Structure {
@@ -207,6 +208,11 @@ public class Capstone {
           detail.arch.read();
           op_info = new M680x.OpInfo((M680x.UnionOpInfo) detail.arch.m680x);
           break;
+        case CS_ARCH_RISCV:
+          detail.arch.setType(Riscv.UnionOpInfo.class);
+          detail.arch.read();
+          op_info = new Riscv.OpInfo((Riscv.UnionOpInfo) detail.arch.riscv);
+          break;
         default:
       }
 
@@ -334,6 +340,7 @@ public class Capstone {
   public static final int CS_ARCH_TMS320C64X = 9;
   public static final int CS_ARCH_M680X = 10;
   public static final int CS_ARCH_MAX = 11;
+  public static final int CS_ARCH_RISCV = 15;
   public static final int CS_ARCH_ALL = 0xFFFF; // query id for cs_support()
 
   // disasm mode
@@ -364,6 +371,8 @@ public class Capstone {
   public static final int CS_MODE_M680X_6811 = 1 << 8; // M680X Motorola/Freescale 68HC11 mode
   public static final int CS_MODE_M680X_CPU12 = 1 << 9; // M680X Motorola/Freescale/NXP CPU12 mode
   public static final int CS_MODE_M680X_HCS08 = 1 << 10; // M680X Freescale HCS08 mode
+  public static final int CS_MODE_RISCV32 = (1 << 0); // RISCV32 mode
+  public static final int CS_MODE_RISCV64 = (1 << 1); // RISCV64 mode
 
   // Capstone error
   public static final int CS_ERR_OK = 0;

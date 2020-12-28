@@ -27,6 +27,7 @@ template = {
             'm680x.h': 'M680x',
             'evm.h': 'Evm',
             'wasm.h': 'Wasm',
+            'riscv.h': 'Riscv',
             'comment_open': '\t//',
             'comment_close': '',
         },
